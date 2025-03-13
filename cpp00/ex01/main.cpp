@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:10:45 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/12 17:38:29 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/13 14:40:32 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,7 @@ void Phone_Book::ft_print_phone_book(void)
 
 void Phone_Book::ft_print_index(int index)
 {
-	if (nb_user <= index){
+	if (index > 7 || index < 0 || index >= all_user){
 		std::cerr << "Error incorrect index" << std:: endl;
 		return; }
 	std:: cout << "NAME : ";
@@ -252,7 +252,7 @@ int Phone_Book::ft_interface_phone_book(Phone_Book *phone_book)
 	int index = 0;
 	std::string input;
 	phone_book->ft_print_phone_book();
-	std::cout << "PLEASE ENTER INDEX FOR SEARCH YOUR CONTACT :";
+	std::cout << "PLEASE ENTER INDEX FOR SEARCH YOUR CONTACT : ";
 	while (1)
 	{
 		if (std::cin.eof())
@@ -268,6 +268,7 @@ int Phone_Book::ft_interface_phone_book(Phone_Book *phone_book)
 		}
 		else {
 			std::cout << "Error Please enter just index between 1 - 8" << std:: endl;
+			std::cout << "PLEASE ENTER INDEX FOR SEARCH YOUR CONTACT : ";
 		}
 	}
  	return EXIT_SUCCESS;
