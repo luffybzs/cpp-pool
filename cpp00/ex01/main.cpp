@@ -6,13 +6,15 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:10:45 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/13 14:40:32 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/14 15:26:53 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cerrno>
+#include <cstddef>
 #include <cstdlib>
 #include <endian.h>
+#include <ostream>
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -151,12 +153,18 @@ int Phone_Book::ft_fill_name(Phone_Book *phone_book, std::string input)
 		nb_user = 0;
 	std::cout << "ADD YOUR FIRST NAME :" << std::endl;
 	std:: getline(std::cin, input);
+	if (input.empty())
+		return std::cout << "ERROR EMPTY VALUE" << std:: endl, EXIT_FAILURE;
 	reperoire[nb_user].SetName(input);
 	std::cout << "ADD YOUR LAST NAME :" << std::endl;
 	std:: getline(std::cin, input);
+	if (input.empty())
+		return std::cout << "ERROR EMPTY VALUE" << std:: endl, EXIT_FAILURE;
 	reperoire[nb_user].SetLastName(input);
 	std::cout << "ADD YOUR NICKNAME :" << std::endl;
 	std:: getline(std::cin, input);
+	if (input.empty())
+		return std::cout << "ERROR EMPTY VALUE" << std:: endl, EXIT_FAILURE;
 	reperoire[nb_user].SetNickName(input);
 	return EXIT_SUCCESS;
 }
@@ -165,6 +173,8 @@ int Phone_Book::ft_fill_num_and_secret(Phone_Book *phone_book, std::string input
 	(void) phone_book;
 	std::cout << "ADD YOUR PHONE NUMBER :" << std::endl;
 	std::getline(std::cin, input);
+	if (input.empty())
+		return std::cout << "ERROR EMPTY VALUE" << std:: endl, EXIT_FAILURE;
 	for (int i = 0; input[i] != '\0'; i++) 
 	{
 		if (input[i] < '0' || input[i] > '9')
@@ -175,6 +185,8 @@ int Phone_Book::ft_fill_num_and_secret(Phone_Book *phone_book, std::string input
 	reperoire[nb_user].SetPhoneNumber(input);
 	std::cout << "ADD YOUR DARKEST SECRET :" << std::endl;
 	std:: getline(std::cin, input);
+	if (input.empty())
+		return std::cout << "ERROR EMPTY VALUE" << std:: endl, EXIT_FAILURE;
 	reperoire[nb_user].SetDarkestSecret(input);
 	if (all_user < 8)
 		all_user++;
@@ -302,7 +314,7 @@ int main(int ac,char **av)
 		if (input == "ADD")
 		{
 			if (repertoire.ft_add_info(&repertoire,input) == EXIT_FAILURE)
-				return EXIT_FAILURE;
+				std::cerr << "ERROR WHILE ADDING A USER" << std:: endl;
 		}
 		else if (input == "SEARCH")
 			repertoire.ft_interface_phone_book(&repertoire);
