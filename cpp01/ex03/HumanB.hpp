@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:35:00 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/16 17:28:29 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/18 13:44:28 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "Weapon.hpp"
 #include <string>
+
 class HumanB{
     private :
         std::string name;
@@ -25,9 +26,5 @@ class HumanB{
         HumanB(std::string name);
         ~HumanB();
 };
-
-
-
-
 
 #endif
