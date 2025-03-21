@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 20:10:26 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/21 20:28:06 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/21 20:36:15 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,26 +57,17 @@ void Harl::complain(std::string level) {
     switch (levelInt) {
         case 0:
             this->debug();
-            this->info();
-            this->warning();
-            this->error();
-            break;
         case 1:
             this->info();
-            this->warning();
-            this->error();
-            break;
         case 2:
             this->warning();
-            this->error();
-            break;
         case 3:
             this->error();
             break;
         default:
-        std::cout << "[ Unrecognized level ]" << std::endl;
-        std::cout << "The provided level is not valid. Please try another one." << std::endl;
-        std::cout << "Exiting..." << std::endl;
-        break;
+            std::cout << "[ Unrecognized level ]" << std::endl;
+            std::cout << "The provided level is not valid. Please try another one." << std::endl;
+            std::cout << "Exiting..." << std::endl;
+            break;
     }
 }
