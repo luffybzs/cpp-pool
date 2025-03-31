@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 20:53:59 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/15 21:43:56 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/22 15:29:40 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@ void Zombie::announce(void)
 {
     std::cout << name;
     std::cout << " : BraiiiiiiinnnzzzZ..." << std::endl;
-    
     return;
 }

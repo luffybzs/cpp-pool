@@ -5,32 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 13:27:35 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/25 16:11:13 by ayarab           ###   ########.fr       */
+/*   Created: 2025/03/25 15:34:57 by ayarab            #+#    #+#             */
+/*   Updated: 2025/03/31 21:24:52 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
-
-
 #ifndef FIXED_HPP
-#define FIXED_HPP
+# define FIXED_HPP
+# include <cmath>
 
-#include <iostream>
-
-class Fixed {
+class Fixed
+{
   private:
-    int _value; 
-    static int const _bits = 8; 
+	int value;
+	static const int b = 8;
 
   public:
-  int getRawBits(void) const; 
-  void setRawBits(int const raw); 
-  Fixed &operator=(Fixed &to_copy); 
-  Fixed(void);   
-  Fixed(Fixed &to_copy); 
-  ~Fixed(void);
+	Fixed(void);
+	Fixed(const Fixed &src);
+	Fixed(const int n);
+	Fixed(const float f);
+	~Fixed(void);
+	Fixed &operator=(const Fixed &oth);
+	int toInt(void) const;
+	float toFloat(void) const;
+	int getRawBits(void) const;
+	void setRawBits(int const raw);
 };
 
 #endif

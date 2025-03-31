@@ -6,7 +6,7 @@
 #    By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/25 14:01:50 by ayarab            #+#    #+#              #
-#    Updated: 2025/03/11 14:49:39 by ayarab           ###   ########.fr        #
+#    Updated: 2025/03/14 15:42:06 by ayarab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,9 @@ CC      = c++
 
 C_FLAGS = -Wall -Werror -Wextra -std=c++98 -g3
 
-SRCS = main.cpp 
+SRCS = main.cpp Contact.cpp PhoneBook.cpp
 
-NAME = phonebook
+NAME = PhoneBook
 
 G = $(BLUE)
 X = $(END)

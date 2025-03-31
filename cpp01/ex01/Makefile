@@ -6,7 +6,7 @@
 #    By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/15 20:53:56 by ayarab            #+#    #+#              #
-#    Updated: 2025/03/15 21:07:51 by ayarab           ###   ########.fr        #
+#    Updated: 2025/03/22 15:28:47 by ayarab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ OBJS = $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJS_DIR)/%.o)
 
 DIR_DUP     = mkdir -p $(@D)
 
-NAME = zombie
+NAME = Horde_Zombie
 
 G				= $(BLUE)
 X 				= $(END)

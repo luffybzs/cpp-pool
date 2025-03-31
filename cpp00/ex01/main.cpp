@@ -6,193 +6,16 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:10:45 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/14 15:26:53 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/14 15:40:29 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cerrno>
-#include <cstddef>
+#include "./Contact.hpp"
+#include "./PhoneBook.hpp"
 #include <cstdlib>
-#include <endian.h>
-#include <ostream>
-#include <string>
-#include <iostream>
-#include <iomanip>
 
-class Contact {
-	
-	
-	private:
-	
-	std::string first_name;
-	std::string last_name;
-	std::string nickname;
-	std::string phone_number;
-	std::string darkest_secret;
-	
-	public:
-	
-	void SetName(std::string  input);
-	void SetLastName(std::string input);
-	void SetNickName(std::string input);
-	void SetPhoneNumber(std::string input);
-	void SetDarkestSecret(std::string input);
-	std::string GetDarkestSecret(void);
-	std::string	GetName(void);
-	std::string GetLastName(void);
-    std::string GetNickName(void);
-    std::string GetPhoneNumber(void);
-	
-	Contact();
-	~Contact();
-};
 
-class Phone_Book {
-	private:
-	Contact reperoire[8];
-	int nb_user;
-	int all_user;
 
-	public:
-	void ft_add_contact(void);
-	void ft_init_value(void);
-	int ft_add_info(Phone_Book *phone_book,std::string input);
-	int ft_fill_num_and_secret(Phone_Book *phone_book, std::string input);
-	int ft_fill_name(Phone_Book *phone_book, std::string input);
-	void ft_print_tab(void);
-	void ft_print_phone_book(void);
-	int ft_interface_phone_book(Phone_Book *phone_book);
-	void ft_print_index(int index);
-
-	
-	Phone_Book();
-	~Phone_Book();
-	
-};
-
-Contact::Contact(void)
-{
-	return;
-}
-Contact::~Contact(void)
-{
-	return;
-}
-std::string Contact::GetName(void)
-{
-	return first_name;
-}
-std::string Contact::GetLastName(void)
-{
-	return last_name; 
-}
-
-std::string Contact::GetNickName(void)
-{
-	return nickname;
-}
-
-std::string Contact::GetPhoneNumber(void)
-{
-	return phone_number;
-}
-
-std::string Contact::GetDarkestSecret(void)
-{ 
-	return darkest_secret;
-}
-void Contact::SetPhoneNumber(std::string input)
-{
-	phone_number = input;
-	return; 
-}
-
-void Contact::SetDarkestSecret(std::string input)
-{
-	darkest_secret = input;
-	return;
-}
-
-void Contact::SetNickName(std::string input)
-{
-	nickname = input;
-	return;
-}
-void Contact::SetLastName(std::string input)
-{
-	last_name = input;
-	return;
-}
-void Contact::SetName(std::string input)
-{
-	first_name = input;
-	return ;
-}
-
-Phone_Book::~Phone_Book(void)
-{
-	return;
-}
-
-Phone_Book::Phone_Book(void)
-{
-	return;
-}
-
-void Phone_Book::ft_init_value(void)
-{
-	nb_user = 0;
-	all_user = 0;
-	return;
-}
-
-int Phone_Book::ft_fill_name(Phone_Book *phone_book, std::string input)
-{
-	(void) phone_book;
-	if (nb_user == 8)
-		nb_user = 0;
-	std::cout << "ADD YOUR FIRST NAME :" << std::endl;
-	std:: getline(std::cin, input);
-	if (input.empty())
-		return std::cout << "ERROR EMPTY VALUE" << std:: endl, EXIT_FAILURE;
-	reperoire[nb_user].SetName(input);
-	std::cout << "ADD YOUR LAST NAME :" << std::endl;
-	std:: getline(std::cin, input);
-	if (input.empty())
-		return std::cout << "ERROR EMPTY VALUE" << std:: endl, EXIT_FAILURE;
-	reperoire[nb_user].SetLastName(input);
-	std::cout << "ADD YOUR NICKNAME :" << std::endl;
-	std:: getline(std::cin, input);
-	if (input.empty())
-		return std::cout << "ERROR EMPTY VALUE" << std:: endl, EXIT_FAILURE;
-	reperoire[nb_user].SetNickName(input);
-	return EXIT_SUCCESS;
-}
-int Phone_Book::ft_fill_num_and_secret(Phone_Book *phone_book, std::string input)
-{
-	(void) phone_book;
-	std::cout << "ADD YOUR PHONE NUMBER :" << std::endl;
-	std::getline(std::cin, input);
-	if (input.empty())
-		return std::cout << "ERROR EMPTY VALUE" << std:: endl, EXIT_FAILURE;
-	for (int i = 0; input[i] != '\0'; i++) 
-	{
-		if (input[i] < '0' || input[i] > '9')
-			return (std::cerr << "PLEASE ENTRE ONLY NUMBER" << std::endl, EXIT_FAILURE);
-		if (i > 9)
-			return (std::cerr << "THE LENGTH OF THE NUMBER DOES NOT MATCH" << std::endl, EXIT_FAILURE); 
-	}
-	reperoire[nb_user].SetPhoneNumber(input);
-	std::cout << "ADD YOUR DARKEST SECRET :" << std::endl;
-	std:: getline(std::cin, input);
-	if (input.empty())
-		return std::cout << "ERROR EMPTY VALUE" << std:: endl, EXIT_FAILURE;
-	reperoire[nb_user].SetDarkestSecret(input);
-	if (all_user < 8)
-		all_user++;
-	nb_user++;
-	return  EXIT_SUCCESS;
-}
 
 void print_norm_Format(std::string str) 
 {
@@ -214,12 +37,12 @@ void print_norm_Format(std::string str)
 	}
 }
 
-void Phone_Book::ft_print_phone_book(void)
+int Phone_Book::ft_print_phone_book(void)
 {
     if (nb_user == 0)
     {
         std::cout << "NO ONE IN PHONE BOOK" << std::endl;
-        return;
+        return EXIT_FAILURE;
     }
     else {
         std::cout << std::setw(10) << "INDEX" << "|"
@@ -240,6 +63,7 @@ void Phone_Book::ft_print_phone_book(void)
 			std::cout << "|" << std:: endl;
         }
     }
+	return EXIT_SUCCESS;
 }
 
 void Phone_Book::ft_print_index(int index)
@@ -263,12 +87,13 @@ int Phone_Book::ft_interface_phone_book(Phone_Book *phone_book)
 {
 	int index = 0;
 	std::string input;
-	phone_book->ft_print_phone_book();
+	if (phone_book->ft_print_phone_book() == EXIT_FAILURE)
+		return EXIT_FAILURE;
 	std::cout << "PLEASE ENTER INDEX FOR SEARCH YOUR CONTACT : ";
 	while (1)
 	{
 		if (std::cin.eof())
-			return 1;
+			return EXIT_FAILURE;
 		getline(std::cin, input);
 		if (input.length() == 1 && input[0] >= '1' && input[0] <= '8')
 		{

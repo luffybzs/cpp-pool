@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 20:54:04 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/15 21:41:11 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/22 15:29:53 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <string>
 
 
-Zombie* zombieHorde( int N, std::string name)
+Zombie* zombieHorde(int N, std::string name)
 {
     Zombie *dest = new Zombie[N]();
 	for (int i = 0; i < N; i++) {
