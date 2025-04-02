@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 21:01:39 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/31 21:09:26 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/04/02 15:56:47 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,11 +159,11 @@ Fixed &Fixed::operator++()
 
 Fixed Fixed::operator++(int)
 {
-	Fixed	temp;
+	Fixed	tmp;
 
-	temp = *this;
+	tmp = *this;
 	++*this;
-	return temp;
+	return tmp;
 }
 
 Fixed &Fixed::operator--()

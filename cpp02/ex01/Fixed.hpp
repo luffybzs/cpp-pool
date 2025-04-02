@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:34:57 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/31 21:24:52 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/04/02 15:58:18 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ class Fixed
 {
   private:
 	int value;
-	static const int b = 8;
+	static const int bit = 8;
 
   public:
 	Fixed(void);

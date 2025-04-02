@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:34:51 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/31 21:24:52 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/04/02 15:58:39 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ Fixed::Fixed(const Fixed &src)
 
 Fixed::Fixed(const int n)
 {
-	value = n * (1 << b);
+	value = n * (1 << bit);
 	return ;
 }
 
 Fixed::Fixed(const float f)
 {
-	value = f * (1 << b);
+	value = f * (1 << bit);
 	return ;
 }
 
@@ -54,7 +54,7 @@ Fixed::~Fixed(void)
 
 float Fixed::toFloat(void) const
 {
-	return (float)value / (1 << b);
+	return (float)value / (1 << bit);
 }
 
 int Fixed::toInt(void) const

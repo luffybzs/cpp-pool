@@ -1,0 +1,110 @@
+Le code que tu as partagé concerne une classe Fixed, qui est une classe représentant des nombres en virgule fixe (fixed-point numbers). Le but de cette classe est de stocker des nombres décimaux sous forme entière, mais en utilisant un certain nombre de bits pour la partie décimale.
+
+Nous allons aborder plusieurs concepts clés pour mieux comprendre comment la classe Fixed effectue les conversions entre int et float en utilisant le bit shifting.
+1. La représentation en virgule fixe (Fixed-Point)
+
+Dans cette classe, l'idée est de représenter un nombre réel (comme un float ou un double) en utilisant des entiers tout en gardant une partie de l'information décimale. Cela est fait en utilisant un nombre fixe de bits pour la partie entière et la partie fractionnaire du nombre.
+
+Par exemple, la variable value dans la classe Fixed est utilisée pour stocker cette valeur entière sous forme de nombre à virgule fixe. Le nombre de bits utilisés pour la partie fractionnaire est contrôlé par la constante bits, qui est ici fixée à 8.
+Conversion d'un nombre en virgule flottante en virgule fixe
+
+Quand un nombre flottant (float) est converti en nombre à virgule fixe, on effectue une multiplication par 2^bits (ici, 2^8 = 256) pour déplacer la virgule décimale de manière à ce que la partie entière soit stockée dans un entier.
+
+Exemple :
+
+    Si tu as un nombre flottant f = 3.75, et si bits = 8, tu le multiplies par 256 (soit 2^8).
+
+    3.75 * 256 = 960
+
+    Ce résultat (960) est ensuite stocké dans la variable value, qui contient le nombre sous forme entière, mais qui représente en réalité un nombre à virgule fixe.
+
+Conversion d'un nombre à virgule fixe en virgule flottante
+
+Lors de la conversion d'un nombre à virgule fixe en nombre flottant, tu fais l'inverse : tu divises la valeur entière par 2^bits pour ramener la virgule à sa position d'origine.
+
+Exemple :
+
+    Si value = 960 (représentant le nombre 3.75 en virgule fixe), et que bits = 8, tu fais :
+
+    960 / 256 = 3.75
+
+    C'est ainsi que tu retrouves la valeur flottante initiale.
+
+2. Le Code et les Détails Importants
+
+Voyons maintenant en détail les parties du code qui gèrent cette conversion :
+2.1 Le constructeur Fixed(const float f)
+
+Fixed::Fixed(const float f)
+{
+    std::cout << "Float constructor called" << std::endl;
+    value = roundf(f * (1 << bits));  // 1 << bits est équivalent à 2^bits
+    return ;
+}
+
+    Ce constructeur prend un float en entrée et le convertit en un nombre à virgule fixe.
+
+    (1 << bits) est un bit shifting à gauche. Le 1 est décalé de bits positions vers la gauche, ce qui est équivalent à 2^bits. Dans ce cas, avec bits = 8, cela revient à multiplier par 256.
+
+    roundf(f * (1 << bits)) : ici, le nombre flottant f est multiplié par 256 (en fonction de bits), puis arrondi à l'entier le plus proche avant d'être stocké dans value. Cela permet de transformer le nombre flottant en un entier qui représente un nombre à virgule fixe.
+
+2.2 Le constructeur Fixed(const int n)
+
+Fixed::Fixed(const int n)
+{
+    std::cout << "Int constructor called" << std::endl;
+    value = n * (1 << bits);  // 1 << bits est équivalent à 2^bits
+    return ;
+}
+
+    Ce constructeur prend un entier (int n) et le convertit directement en un nombre à virgule fixe.
+
+    n * (1 << bits) : ici, l'entier n est multiplié par 256 (comme expliqué plus haut), ce qui déplace la virgule pour créer une représentation à virgule fixe de cet entier.
+
+2.3 La méthode toFloat()
+
+float Fixed::toFloat(void) const
+{
+    return (float)value / (1 << bits);
+}
+
+    Cette méthode convertit la valeur à virgule fixe stockée dans value en un float.
+
+    Elle divise value par 256 (soit 2^bits) pour déplacer la virgule à sa position d'origine et obtenir le nombre flottant.
+
+2.4 La méthode toInt()
+
+int Fixed::toInt(void) const
+{
+    return (roundf(toFloat()));
+}
+
+    Cette méthode convertit la valeur à virgule fixe en un entier en deux étapes :
+
+        Elle appelle toFloat() pour convertir la valeur à virgule fixe en un float.
+
+        Elle arrondit ce float à l'entier le plus proche avec roundf() et retourne cet entier.
+
+3. Explication du Bit Shifting
+
+Le bit shifting est une opération qui consiste à décaler les bits d'un nombre binaire à gauche ou à droite. Cela permet de multiplier ou diviser un nombre entier par des puissances de 2.
+
+    Décalage à gauche (left shift) : 1 << n équivaut à multiplier le nombre 1 par 2^n. Par exemple :
+
+        1 << 8 équivaut à 2^8 = 256.
+
+    Décalage à droite (right shift) : x >> n équivaut à diviser x par 2^n.
+
+Ainsi, dans ton code :
+
+    (1 << bits) dans les constructeurs et méthodes permet de manipuler les bits pour effectuer des conversions entre types en virgule fixe et flottante.
+
+4. Résumé de la Conversion avec Bit Shifting
+
+    De int à Fixed : L'entier est multiplié par 2^bits pour créer une valeur à virgule fixe.
+
+    De Fixed à float : La valeur à virgule fixe est divisée par 2^bits pour récupérer la valeur flottante d'origine.
+
+    De Fixed à int : La valeur flottante est arrondie et convertie en entier.
+
+Les opérations de bit shifting permettent d'effectuer ces conversions de manière rapide et efficace, en exploitant la représentation binaire des nombres.
