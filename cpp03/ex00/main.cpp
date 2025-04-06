@@ -16,11 +16,16 @@ int main()
 {
     ClapTrap  player("ayoub");
     ClapTrap player1;
-
+    
     player1 = player;
     player1.attack("weapon");
     player1.takeDamage(5);
     player1.beRepaired(5);
-  
+    ClapTrap  cpy_player(player1);
+    cpy_player.attack("ak-47");
+    cpy_player.takeDamage(5);
+    cpy_player.beRepaired(5);
+
+    
     return 0;
 }

@@ -31,17 +31,23 @@ ClapTrap::~ClapTrap()
     std::cout << "ClapTrap destructor has been called" << std::endl;
 	return ;
 }
-ClapTrap::ClapTrap(ClapTrap &to_copy): _Name(to_copy._Name), hit_point(to_copy.hit_point), energy_point(to_copy.energy_point), attack_damage(to_copy.attack_damage) 
+ClapTrap::ClapTrap(const ClapTrap &to_copy): _Name(to_copy._Name), hit_point(to_copy.hit_point), energy_point(to_copy.energy_point), attack_damage(to_copy.attack_damage) 
 {
 	std::cout << "ClapTrap Copy constructor has been called" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(ClapTrap &claptrap) 
 {
-	attack_damage = claptrap.attack_damage;
+    if (this == &claptrap)
+    {
+        std::cout << "Warning {ClapTrap Affectation operator has been called} but for the same memorie adress" << std::endl;
+        return *this;
+    }
 	_Name = claptrap._Name;
-	energy_point = claptrap.energy_point;
 	hit_point = claptrap.hit_point;
+	energy_point = claptrap.energy_point;
+	attack_damage = claptrap.attack_damage;
+    std::cout << "ClapTrap Affectation operator has been called" << std::endl;
 	return *this;
 }
 
