@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 13:10:30 by ayarab            #+#    #+#             */
-/*   Updated: 2025/04/07 14:55:58 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/04/07 14:41:41 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ ClapTrap::~ClapTrap()
 
 ClapTrap::ClapTrap(std::string Name, int life, int eng, int att) : _Name(Name), hit_point(life), energy_point(eng), attack_damage(att)
 {
-	std::cout << "ClapTrap Personalized constructor has been called" << std::endl;
+	std::cout << "ClapTrap Default constructor has been called" << std::endl;
 	return;
 }
 

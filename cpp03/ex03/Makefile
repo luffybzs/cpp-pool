@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/09 18:30:23 by ayarab            #+#    #+#              #
-#    Updated: 2025/04/09 18:30:27 by ayarab           ###   ########.fr        #
+#    Created: 2025/04/09 18:27:47 by ayarab            #+#    #+#              #
+#    Updated: 2025/04/09 18:31:53 by ayarab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CC = c++
 
 C_FLAGS = -Wall -Werror -Wextra -std=c++98 -g3
 
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp
+SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 
 SRCS_DIR = .
 
@@ -35,7 +35,7 @@ OBJS = $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJS_DIR)/%.o)
 
 DIR_DUP     = mkdir -p $(@D)
 
-NAME =  scavtrap
+NAME =  DiamondTrap
 
 G				= $(BLUE)
 X 				= $(END)
