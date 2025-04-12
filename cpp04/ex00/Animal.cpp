@@ -6,24 +6,20 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 16:26:41 by ayarab            #+#    #+#             */
-/*   Updated: 2025/04/11 16:53:20 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/04/12 21:40:42 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./Animal.hpp"
 #include <iostream>
 
-Animal::Animal(void) : type("No_Type")
+Animal::Animal(void) : type("Animal")
 {
     std::cout << "Animal default constructor has been called" << std::endl;
     return;
 }
 
-Animal::Animal(std::string _type) : type(_type)
-{
-    std::cout << "Animal personalized constructor has been called" << std::endl;
-    return;
-}
+
 
 Animal::Animal(const Animal &animal_cpy)
 {
@@ -43,4 +39,13 @@ Animal::~Animal(void)
 {
     std::cout << "Animal destructor has been called" << std::endl;
     return;
+}
+void Animal::MakeSound(void)
+{
+    std::cout << "Animal make sound" << std::endl;
+    return;
+}
+std::string Animal::GetType(void) const
+{
+    return type;
 }

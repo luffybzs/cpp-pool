@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 16:26:53 by ayarab            #+#    #+#             */
-/*   Updated: 2025/04/12 21:47:31 by ayarab           ###   ########.fr       */
+/*   Created: 2025/04/12 21:41:20 by ayarab            #+#    #+#             */
+/*   Updated: 2025/04/12 21:47:58 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
-#include <string>
+#ifndef WRONGANIMAL_HPP
+#define WRONGANIMAL_HPP
 
+#include <iostream>
 
-class Animal {
-    protected:
-    std::string type;
-    public:
-    Animal(void);
-    Animal(const Animal &Animal_cpy);
-    virtual ~Animal(void);
-    Animal &operator=(const Animal &animal_aff);
-    virtual void MakeSound(void);
-    virtual std::string GetType(void) const;
+class WrongAnimal {
+	protected:
+		std::string type;
+		
+	public:
+
+		WrongAnimal();
+		WrongAnimal(WrongAnimal const &to_copy);
+		virtual ~WrongAnimal();
+		WrongAnimal &operator=(WrongAnimal const &to_affect);
+		void makeSound(void) const;
+		virtual std::string getType(void) const;
 };
-
-
-
-
 
 #endif
