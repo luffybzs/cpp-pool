@@ -21,9 +21,9 @@ class Animal {
     public:
     Animal(void);
     Animal(const Animal &Animal_cpy);
-    virtual ~Animal(void);
     Animal &operator=(const Animal &animal_aff);
-    virtual void MakeSound(void);
+    virtual ~Animal(void);
+    virtual void MakeSound(void) const;
     virtual std::string GetType(void) const;
 };
 

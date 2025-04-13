@@ -10,3 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+ #pragma once
+
+ #include "WrongAnimal.hpp"
+class WrongCat : public WrongAnimal
+{
+	public:
+	WrongCat(void);
+	WrongCat(const WrongCat &WrongCat_cpy);
+	WrongCat &operator=(const WrongCat &WrongCat_aff);
+	~WrongCat(void);
+	void MakeSound(void) const;
+};

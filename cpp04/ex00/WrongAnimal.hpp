@@ -14,19 +14,19 @@
 #define WRONGANIMAL_HPP
 
 #include <iostream>
+#include <string>
 
 class WrongAnimal {
 	protected:
 		std::string type;
-		
 	public:
 
 		WrongAnimal();
 		WrongAnimal(WrongAnimal const &to_copy);
-		virtual ~WrongAnimal();
 		WrongAnimal &operator=(WrongAnimal const &to_affect);
-		void makeSound(void) const;
-		virtual std::string getType(void) const;
+		virtual ~WrongAnimal();
+		virtual void MakeSound(void) const;
+		virtual std::string GetType(void) const;
 };
 
 #endif

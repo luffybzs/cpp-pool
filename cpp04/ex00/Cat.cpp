@@ -16,7 +16,7 @@
 #include <string>
 
 
-Cat::Cat(void) : Animal()
+Cat::Cat(void)
 {
     type = "Cat";
     std::cout << "Cat Default constructor has been called" << std::endl;
@@ -43,7 +43,7 @@ Cat::~Cat(void)
     return;
 }
 
-void Cat::MakeSound(void)
+void Cat::MakeSound(void) const
 {
     std::cout << type << " MEOWWW" << std::endl;
     return;

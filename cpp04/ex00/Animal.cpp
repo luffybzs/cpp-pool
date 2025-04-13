@@ -19,8 +19,6 @@ Animal::Animal(void) : type("Animal")
     return;
 }
 
-
-
 Animal::Animal(const Animal &animal_cpy)
 {
     *this = animal_cpy;
@@ -40,7 +38,7 @@ Animal::~Animal(void)
     std::cout << "Animal destructor has been called" << std::endl;
     return;
 }
-void Animal::MakeSound(void)
+void Animal::MakeSound(void) const
 {
     std::cout << "Animal make sound" << std::endl;
     return;

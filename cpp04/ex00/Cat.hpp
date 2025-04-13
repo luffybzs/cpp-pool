@@ -21,6 +21,6 @@ class Cat : public Animal
     Cat(const Cat &cat_cpy);
     Cat &operator=(const Cat &cat_aff);
     ~Cat(void);
-    void MakeSound(void);
+    void MakeSound(void)const;
         
 };

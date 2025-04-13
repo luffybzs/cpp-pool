@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "WrongAnimal.hpp"
+#include <iostream>
 WrongAnimal::WrongAnimal(void) : type("WrongAnimal")
 {
 	std::cout << "WrongAnimal default constructor has been called" << std::endl;
@@ -36,13 +37,13 @@ WrongAnimal::~WrongAnimal()
     return;
 }
 
-void WrongAnimal::makeSound(void) const 
+void WrongAnimal::MakeSound(void) const 
 {
 	std::cout << "WrongAnimal make sound" << std::endl;
     return;
 }
 
-std::string WrongAnimal::getType(void) const 
+std::string WrongAnimal::GetType(void) const 
 {
 	return this->type;
 }
