@@ -23,4 +23,6 @@ class Brain
     Brain(const Brain &Brain_cpy);
     Brain &operator=(const Brain &Brain_aff);
     ~Brain(void);
+    std::string GetIdeas(int i);
+    void Fill_Idea(std::string idea, int i);
 };

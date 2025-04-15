@@ -43,3 +43,17 @@ Brain::~Brain(void)
     std::cout << "Brain destructor has been called" << std::endl;
     return;
 }
+
+std::string Brain::GetIdeas(int i) 
+{
+    if (i > 99)
+        return NULL;
+    return ideas[i];
+}
+
+void Brain::Fill_Idea(std::string idea, int i)
+{
+    if (i > 99)
+      return ;
+    this->ideas[i] = idea;
+}

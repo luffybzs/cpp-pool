@@ -18,12 +18,13 @@
 class Cat : public Animal
 {
     private:
-        Brain Cat_Brain;
+        Brain *Cat_Brain;
     public:
     Cat(void);
     Cat(const Cat &cat_cpy);
     Cat &operator=(const Cat &cat_aff);
     ~Cat(void);
     void MakeSound(void)const;
-        
+    std::string GetIdeas(int i);
+    void Fill_Idea(std::string idea, int i);     
 };
