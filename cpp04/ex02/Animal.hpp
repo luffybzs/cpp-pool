@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 16:23:45 by ayarab            #+#    #+#             */
-/*   Updated: 2025/04/14 16:31:17 by ayarab           ###   ########.fr       */
+/*   Created: 2025/04/11 16:26:53 by ayarab            #+#    #+#             */
+/*   Updated: 2025/04/12 21:47:31 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-
-#include "Animal.hpp"
-#include "Brain.hpp"
+#ifndef ANIMAL_HPP
+#define ANIMAL_HPP
 #include <string>
-class Dog : public Animal{
-    private:
-        Brain *Dog_Brain;
+
+
+class Animal {
+    protected:
+    std::string type;
     public:
-    Dog(void);
-    Dog(const Dog &Dog_cpy);
-    Dog &operator=(const Dog &Dog_aff);
-    ~Dog(void);
-    void MakeSound(void)const;
-    void Fill_Idea(std::string idea, int i);
-    std::string GetIdeas(int i);
+    Animal(void);
+    Animal(const Animal &Animal_cpy);
+    Animal &operator=(const Animal &animal_aff);
+    virtual ~Animal(void);
+    virtual void MakeSound(void) const;
+    virtual std::string GetType(void) const;
 };
+
+
+
+
+
+#endif

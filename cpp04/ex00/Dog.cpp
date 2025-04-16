@@ -15,14 +15,14 @@
 #include "Dog.hpp"
 #include "Animal.hpp"
 #include <iostream>
-Dog::Dog(void)
+Dog::Dog(void) : Animal()
 {
     type = "Dog";
     std::cout << "Dog default constructor has been called" << std::endl;
     return;
 }
 
-Dog::Dog(const Dog &Dog_cpy) 
+Dog::Dog(const Dog &Dog_cpy) : Animal()
 {
     *this = Dog_cpy;
     std::cout << "Dog Copy operator has been called" << std::endl;

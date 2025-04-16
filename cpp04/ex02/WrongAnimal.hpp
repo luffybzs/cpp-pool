@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 16:23:39 by ayarab            #+#    #+#             */
-/*   Updated: 2025/04/14 14:29:27 by ayarab           ###   ########.fr       */
+/*   Created: 2025/04/12 21:41:20 by ayarab            #+#    #+#             */
+/*   Updated: 2025/04/12 21:47:58 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
-#include <cstdlib>
-#include <iostream>
+#ifndef WRONGANIMAL_HPP
+#define WRONGANIMAL_HPP
 
-int	main(void)
-{
-	const Animal *meta = new Animal();
-	 Animal *j = new Dog();
-	 Animal *i = new Cat();
-	std::cout << j->GetType() << " " << std::endl;
-	std::cout << i->GetType() << " " << std::endl;
-	i->MakeSound(); 
-	j->MakeSound();
-	meta->MakeSound();
-    delete meta;
-    delete j;
-    delete i;
-	return (0);
-}
+#include <iostream>
+#include <string>
+
+class WrongAnimal {
+	protected:
+		std::string type;
+	public:
+
+		WrongAnimal();
+		WrongAnimal(WrongAnimal const &to_copy);
+		WrongAnimal &operator=(WrongAnimal const &to_affect);
+		virtual ~WrongAnimal();
+		virtual void MakeSound(void) const;
+		virtual std::string GetType(void) const;
+};
+
+#endif

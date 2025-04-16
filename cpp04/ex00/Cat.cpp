@@ -16,7 +16,7 @@
 #include <string>
 
 
-Cat::Cat(void)
+Cat::Cat(void) : Animal()
 {
     type = "Cat";
     std::cout << "Cat Default constructor has been called" << std::endl;
@@ -24,7 +24,7 @@ Cat::Cat(void)
 }
 
 
-Cat::Cat(const Cat &Cat_cpy)
+Cat::Cat(const Cat &Cat_cpy) : Animal()
 {
     *this = Cat_cpy;
     std::cout << "Cat Copy operator has been called" << std::endl;

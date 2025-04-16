@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 16:23:45 by ayarab            #+#    #+#             */
-/*   Updated: 2025/04/14 16:31:17 by ayarab           ###   ########.fr       */
+/*   Created: 2025/04/11 16:23:50 by ayarab            #+#    #+#             */
+/*   Updated: 2025/04/14 16:30:43 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
+
 #include "Animal.hpp"
 #include "Brain.hpp"
-#include <string>
-class Dog : public Animal{
+class Cat : public Animal
+{
     private:
-        Brain *Dog_Brain;
+        Brain *Cat_Brain;
     public:
-    Dog(void);
-    Dog(const Dog &Dog_cpy);
-    Dog &operator=(const Dog &Dog_aff);
-    ~Dog(void);
+    Cat(void);
+    Cat(const Cat &cat_cpy);
+    Cat &operator=(const Cat &cat_aff);
+    ~Cat(void);
     void MakeSound(void)const;
-    void Fill_Idea(std::string idea, int i);
     std::string GetIdeas(int i);
+    void Fill_Idea(std::string idea, int i);     
 };
