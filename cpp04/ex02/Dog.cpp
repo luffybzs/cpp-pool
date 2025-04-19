@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 16:23:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/04/12 21:49:53 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/04/17 19:14:23 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "Brain.hpp"
 #include <iostream>
 
-Dog::Dog(void) :Animal()
+Dog::Dog(void) : Animal()
 {
     type = "Dog";
     Dog_Brain = new Brain();

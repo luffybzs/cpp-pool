@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:58:46 by ayarab            #+#    #+#             */
-/*   Updated: 2025/04/14 16:24:27 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/04/17 19:57:01 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Brain::Brain(const Brain &brain_cpy)
 Brain &Brain::operator=(const Brain &Brain_aff)
 {
     int i = 0;
-    while (i <= 1000) {
+    while (i < 100) {
         ideas[i] = Brain_aff.ideas[i];
         i++;
     }
@@ -46,14 +46,14 @@ Brain::~Brain(void)
 
 std::string Brain::GetIdeas(int i) 
 {
-    if (i > 99)
+    if (i > 99 || i < 0)
         return NULL;
     return ideas[i];
 }
 
 void Brain::Fill_Idea(std::string idea, int i)
 {
-    if (i > 99)
+    if (i > 99 || i < 0) 
       return ;
     this->ideas[i] = idea;
 }

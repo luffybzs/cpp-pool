@@ -15,14 +15,14 @@
 #include "WrongAnimal.hpp"
 #include <iostream>
 
-WrongCat::WrongCat(void)
+WrongCat::WrongCat(void) : WrongAnimal()
 {
 	type = "WrongCat";
 	std::cout << "WrongCat default constructor has been called" << std::endl;
 	return;
 }
 
-WrongCat::WrongCat(const WrongCat &WrongCat_cpy) 
+WrongCat::WrongCat(const WrongCat &WrongCat_cpy): WrongAnimal()
 {
 	*this = WrongCat_cpy;
 	std::cout << "WrongCat copy constructor has been called" << std::endl;
