@@ -38,8 +38,7 @@ std::string const &AMateria::GetType() const
 	return (this->type);
 }
 
-/*void AMateria::use(ICharacter& target) 
+void AMateria::use(ICharacter& target) 
 {
-	std::cout << "Default AMateria use member function !!" << std::endl << "Nothing to " << target.GetName() << std::endl;
+	std::cout << "Default AMateria use member function !!" << std::endl << "Nothing to " << target.getName() << std::endl;
 }
-*/

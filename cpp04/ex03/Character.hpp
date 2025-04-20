@@ -30,4 +30,9 @@ class Character : public ICharacter
 	Character(const Character &Character_cpy);
 	Character &operator=(const Character &Character_aff);
 	~Character(void);
+
+	virtual std::string const & getName(void) const;
+	virtual void equip(AMateria* m);
+	virtual void unequip(int idx);
+	virtual void use(int idx, ICharacter& target);
 };

@@ -45,3 +45,9 @@ AMateria *Cure::clone() const
 	std::cout << "Cure clone method has been called" << std::endl;
 	return new Cure(*this);
 }
+
+void Cure::use(ICharacter& target) 
+{
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+	return;
+}

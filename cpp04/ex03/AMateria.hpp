@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "ICharacter.hpp"
 #include <string>
 class AMateria {
 	protected:
@@ -13,5 +14,5 @@ class AMateria {
 		virtual ~AMateria(void);
 		std::string const &GetType() const;
 		virtual AMateria* clone() const = 0;
-		//void use(ICharacter& target);
+		void use(ICharacter& target);
 };

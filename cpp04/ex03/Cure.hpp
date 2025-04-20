@@ -22,6 +22,6 @@ class Cure :public  AMateria
 	~Cure();
 	Cure &operator=(Cure const &Cure_aff);
 	AMateria* clone() const;
-	//virtual void use(ICharacter& target);
+	virtual void use(ICharacter& target);
 
 };

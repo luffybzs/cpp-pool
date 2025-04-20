@@ -45,3 +45,8 @@ AMateria *Ice::clone() const
 	std::cout << "Ice clone method has been called" << std::endl;
 	return new Ice(*this);
 }
+void Ice::use(ICharacter& target) 
+{
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+	return;
+}
