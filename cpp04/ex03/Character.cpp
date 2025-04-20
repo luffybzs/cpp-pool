@@ -40,6 +40,8 @@ Character::Character(const Character &Character_cpy)
 Character &Character::operator=(const Character &Character_aff)
 {
 	std::cout << "Character Affectation operator has been called" << std::endl;
+	if (this == &Character_aff)
+			return (*this);
 	Name = Character_aff.Name;
 	ft_clear_stuff();
 	ft_cpy_stuff(Character_aff);
