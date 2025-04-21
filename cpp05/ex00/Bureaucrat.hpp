@@ -6,16 +6,30 @@
 class Bureaucrat 
 {
 	private:
-		const std::string Name;
-		int grade;
+		std::string Name;
+		int Grade;
 	public:
-		Bureaucrat(void);
-		Bureaucrat(const std::string Name, int garde);
+		Bureaucrat(const std::string _name, int grade);
 		Bureaucrat(const Bureaucrat &Bureaucrat_cpy);
 		Bureaucrat &operator=(const Bureaucrat &Bureaucrat_aff);
 		~Bureaucrat(void);
+		std::string GetName(void);
+		int GetGrade(void);
+		void incrementGrade();
+		void decrementGrade();
 
-
-};
-
+		class GradeTooHighException : public std::exception {
+			public:
+			const char* what() const throw();
+		};
+		
+		class GradeTooLowException : public std::exception {
+			public:
+			const char* what() const throw();
+		};
+		friend std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
+	};
+	
 #endif
+
+
