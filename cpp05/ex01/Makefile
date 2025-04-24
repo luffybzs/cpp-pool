@@ -6,7 +6,7 @@
 #    By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 18:25:06 by ayarab            #+#    #+#              #
-#    Updated: 2025/04/21 18:25:25 by ayarab           ###   ########.fr        #
+#    Updated: 2025/04/24 21:00:08 by ayarab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 DEBUG = -g -DDEBUG=1
 
-SRCS = main.cpp Bureaucrat.cpp
+SRCS = main.cpp Bureaucrat.cpp Form.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 
