@@ -6,11 +6,12 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:26:57 by ayarab            #+#    #+#             */
-/*   Updated: 2025/04/24 21:37:08 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/04/26 22:46:28 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
 
 #include <ostream>
 #include <string>
@@ -18,17 +19,17 @@
 class	Bureaucrat;
 class AForm
 {
-  private:
+	private:
 	const std::string Name;
 	bool isSigned;
 	const int GradetoSign;
 	const int GradetoExecute;
-
-  public:
+	
+	public:
 	AForm(const std::string &name, const int gradeToSign,const int gradeToExec);
 	AForm(const AForm &AForm_cpy);
 	AForm &operator=(const AForm &AForm_aff);
-	~AForm();
+	virtual ~AForm();
 	
 	
 	const std::string &getName() const;
@@ -38,7 +39,7 @@ class AForm
 	
 	
 	void beSigned(Bureaucrat &bureaucrat);
-	virtual void execute(const Bureaucrat &bureaucrat_);
+	virtual void execute(const Bureaucrat &bureaucrat_) const = 0;
 	
 	class GradeTooHighException : public std::exception
 	{
