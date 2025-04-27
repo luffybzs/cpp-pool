@@ -12,7 +12,7 @@
 
 #include "AForm.hpp"
 #include <iostream>
-
+#include "Bureaucrat.hpp"
 
 AForm::AForm(const std::string &name, const int gradeToSign,
 	const int gradeToExec) : Name(name), isSigned(false),
@@ -56,8 +56,8 @@ void AForm::beSigned(Bureaucrat &bureaucrat)
         return;
     }
 	if (bureaucrat.GetGrade() > GradetoSign)
-	throw GradeTooLowException();
-isSigned = true;
+		throw GradeTooLowException();
+	isSigned = true;
 }
 
 const std::string &AForm::getName(void) const
