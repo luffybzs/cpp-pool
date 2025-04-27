@@ -16,7 +16,8 @@
 #include <ostream>
 #include <string>
 
-class	Bureaucrat;
+
+class Bureaucrat;
 class AForm
 {
 	private:
@@ -56,5 +57,5 @@ class AForm
 		public:
 		const char *what() const throw();
 	};
-	friend std::ostream &operator<<(std::ostream &os, const AForm &AForm_oth);
 };
+std::ostream &operator<<(std::ostream &os, const AForm &AForm_oth);

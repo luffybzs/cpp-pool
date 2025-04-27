@@ -10,23 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
-
 #include "ShrubberyCreationForm.hpp"
 #include <fstream>
 #include <iostream>
 
 ShrubberyCreationForm::ShrubberyCreationForm()
-	: AForm("NoName", 145, 137) 
+	: AForm("ShubberyCreationForm", 145, 137) 
 {
+    target = "default";
     std::cout << "ShubberyCreationForm Default constructor has been called" << std::endl;
     return; 
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) 
-	: AForm(target, 145, 137) 
+ShrubberyCreationForm::ShrubberyCreationForm(std::string _target) 
+	: AForm("ShubberyCreationForm", 145, 137) 
 {
+    target = _target;
     std::cout << "ShubberyCreationForm personalized constructor has been called" << std::endl;
     return;  
 }
@@ -34,6 +33,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &ShrubberyCreationForm_cpy)
 	: AForm(ShrubberyCreationForm_cpy.getName(), 145, 137) 
 {
+        target = ShrubberyCreationForm_cpy.target;
     	*this = ShrubberyCreationForm_cpy;
         std::cout << "ShrubberyCreationForm copy constructor has been called" << std::endl;
         return;
@@ -45,14 +45,18 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
     return;
 }
 
-ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm const &to_copy) 
+ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm const &ShrubberyCreationForm_aff) 
 {
-	AForm::operator=(to_copy);
-    std::cout << "ShrubberyCreationForm " <<std::endl;
+    if (this != &ShrubberyCreationForm_aff)
+    {
+        target = ShrubberyCreationForm_aff.target;
+    }
+	AForm::operator=(ShrubberyCreationForm_aff);
+    std::cout << "ShrubberyCreationForm affectation has been called" <<std::endl;
 	return *this;
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat &executor) const
+void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 {
     if (!GetIsSigned())
         throw AForm::FormNotSignedException();
@@ -60,19 +64,24 @@ void ShrubberyCreationForm::execute(Bureaucrat &executor) const
         throw AForm::GradeTooLowException();
 
     std::ofstream out;
-    
-    out.open("_shrubbery");
-    if (!out)
-        throw std::runtime_error("Failed to create shrubbery file");
 
-    out << "        *\n"
-    << "       ***\n"
-    << "      *****\n"
-    << "     *******\n"
-    << "    *********\n"
-    << "   ***********\n"
-    << "  *************\n"
-    << "       | |\n"
-    << "       | |"
-    << std::endl;
+    out.open((target + "_shrubbery").c_str());
+    if (!out.is_open())
+        throw FileCreationException();
+    out << "                                  # #### ####" << std::endl;
+    out << "                                ### \\/#|### |/####" << std::endl;
+    out << "                               ##\\/#/ \\\\||/##/_/##/_#" << std::endl;
+    out << "                             ###  \\/###|/ \\/ # ###" << std::endl;
+    out << "                           ##_\\_#\\_\\## | #/###_/_####" << std::endl;
+    out << "                          ## #### # \\ #| /  #### ##/##" << std::endl;
+    out << "                           __#_--###`  |{,###---###-~" << std::endl;
+    out << "                                     \\ }{" << std::endl;
+    out << "                                      }}{" << std::endl;
+    out << "                                      }}{" << std::endl;
+    out << "                                      {{}}" << std::endl;
+    out << "                                , -=-~{ .-^- _" << std::endl;
+    out << "                                      `}" << std::endl;
+    out << "                                       {" << std::endl;
+    out.close();
+    return;
 }

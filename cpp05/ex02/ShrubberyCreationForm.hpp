@@ -19,7 +19,11 @@ class Bureaucrat;
 
 class ShrubberyCreationForm : public AForm
 {
-  public:
+
+	private:
+	std::string target;
+
+  	public:
 	ShrubberyCreationForm(void);
 	ShrubberyCreationForm(std::string target);
 	ShrubberyCreationForm(ShrubberyCreationForm const &ShrubberyCreationForm_cpy);
@@ -27,7 +31,7 @@ class ShrubberyCreationForm : public AForm
 	~ShrubberyCreationForm(void);
 
 	ShrubberyCreationForm &operator=(ShrubberyCreationForm const &ShubberyCreationForm_aff);
-	void execute(Bureaucrat &executor) const;
+	void execute(const Bureaucrat &executor) const;
 
 	class FileCreationException : public std::exception {
         const char* what() const throw() {
