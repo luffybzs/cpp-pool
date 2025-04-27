@@ -6,12 +6,13 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:11:27 by ayarab            #+#    #+#             */
-/*   Updated: 2025/04/21 18:23:22 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/04/26 17:29:24 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 #include <iostream>
 
 
@@ -47,19 +48,19 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &Bureaucrat_aff)
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return "The Grade is too high.";
+	return "Bureaucrat -> The Grade is too high.";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return "The Grade is too low";
+	return "Bureaucrat -> The Grade is too low.";
 }
 
-int Bureaucrat::GetGrade(void)const
+int Bureaucrat::GetGrade(void) const
 {
 	return Grade;
 }
-std::string Bureaucrat::GetName() const
+std::string Bureaucrat::GetName(void) const
 {
 	return Name;
 }
@@ -82,3 +83,33 @@ void Bureaucrat::decrementGrade()
     	Grade++;
 	return;
 }
+
+void Bureaucrat::signForm(AForm &form)
+{
+	try {
+	  form.beSigned(*this);
+	  std::cout << GetName() << " has signed " << form.getName() << std::endl;
+	}
+	catch (const AForm::GradeTooLowException &e) {
+	  std::cout << GetName() << " couldn’t sign " << form.getName()
+					<< " because " << e.what() << std::endl;
+	}
+	return;
+  }
+
+  void Bureaucrat::executeForm(AForm const &form) 
+  {
+	try {
+	  form.execute(*this);
+	  std::cout << GetName() << " executes " << form.getName() << std::endl;
+	}
+	catch (const AForm::GradeTooLowException &e) {
+	  std::cout << GetName() << " couldn’t execute " << form.getName()
+					<< " because " << e.what() << std::endl;
+	}
+	catch (const AForm::FormNotSignedException &e) {
+	  std::cout << GetName() << " couldn’t execute " << form.getName()
+					<< " because " << e.what() << std::endl;
+	}
+	return;
+  }

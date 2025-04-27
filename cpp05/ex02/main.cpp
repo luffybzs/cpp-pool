@@ -16,88 +16,78 @@
 #include "PresidentialPardonForm.hpp"
 #include <iostream>
 
-void testDivider(const std::string& title) {
+void testDivider(const std::string &title) 
+{
     std::cout << "\n\n=== " << title << " ===\n";
+    return;
 }
 
-int main() {
-    Bureaucrat  high("Master Chief", 1);
-    Bureaucrat  medium("Gordon Freeman", 45);
-    Bureaucrat  low("Mario", 150);
+int main() 
+{
+    Bureaucrat  high("Master LUFFY", 1);
+    Bureaucrat  medium("VICE ZORO", 45);
+    Bureaucrat  low("USSOP", 150);
 
-    // ================== SHRUBBERY TEST ==================
+    //SHRUBBERY TEST
     {
         testDivider("SHRUBBERY CREATION FORM");
-        ShrubberyCreationForm shrub("Home");
+        ShrubberyCreationForm shrub("TEST");
 
-        // Test non signé
         try {
             shrub.execute(high);
         } catch (const std::exception& e) {
-            std::cerr << "❌ " << e.what() << "\n";
+            std::cerr << "ERROR : {" << e.what() << "}"<< "\n";
         }
 
-        // Signature
-        low.signForm(shrub);  // Échec
-        high.signForm(shrub); // Succès
+        low.signForm(shrub); 
+        high.signForm(shrub);
 
-        // Exécution
-        low.executeForm(shrub);  // Grade trop bas
-        medium.executeForm(shrub); // Succès
-        std::cout << "🌳 Vérifier la création de Home_shrubbery\n";
+        low.executeForm(shrub); 
+        medium.executeForm(shrub); 
     }
-
-    // ================== ROBOTOMY TEST ==================
+    //ROBOTOMY TEST
     {
         testDivider("ROBOTOMY REQUEST FORM");
-        RobotomyRequestForm robot("Bender");
+        RobotomyRequestForm robot("C-17");
         
         high.signForm(robot);
         
-        // Test réussi (50% de chance)
         std::cout << "\nPremière tentative :\n";
         high.executeForm(robot);
         
         std::cout << "\nDeuxième tentative :\n";
-        high.executeForm(robot); // Peut échouer
-
-        // Test grade insuffisant
+        high.executeForm(robot); 
         try {
             robot.execute(medium);
         } catch (const std::exception& e) {
-            std::cerr << "❌ " << e.what() << "\n";
+            std::cerr << "ERROR : {" << e.what() << "}"<< "\n";
         }
     }
-
-    // ================== PRESIDENTIAL TEST ==================
+    //PRESIDENTIAL TEST
     {
         testDivider("PRESIDENTIAL PARDON FORM");
-        PresidentialPardonForm pardon("Zorg");
+        PresidentialPardonForm pardon("AYOUB");
         
-        // Test non signé
         try {
             pardon.execute(high);
         } catch (const std::exception& e) {
-            std::cerr << "❌ " << e.what() << "\n";
+            std::cerr << "ERROR : {" << e.what() << "}"<< "\n";
         }
         
-        medium.signForm(pardon); // Échec signature
-        high.signForm(pardon);   // Succès
+        medium.signForm(pardon);
+        high.signForm(pardon);  
         
-        // Exécution
-        medium.executeForm(pardon); // Grade insuffisant
-        high.executeForm(pardon);   // Succès
+        medium.executeForm(pardon);
+        high.executeForm(pardon);   
     }
-
-    // ================== COPY TEST ==================
+    //COPY TEST
     {
         testDivider("DEEP COPY TEST");
         PresidentialPardonForm original("Clone");
         high.signForm(original);
         
         PresidentialPardonForm copy = original;
-        copy.execute(high); // Doit fonctionner
+        copy.execute(high); 
     }
-
     return 0;
 }
