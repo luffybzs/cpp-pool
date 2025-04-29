@@ -30,9 +30,9 @@ Bureaucrat::~Bureaucrat(void)
 	std::cout << "Bureaucrat destructor has been called" << std::endl;
 	return;
 }
-Bureaucrat::Bureaucrat(const Bureaucrat &Bureaucrat_cpy)
+Bureaucrat::Bureaucrat(const Bureaucrat &Bureaucrat_cpy) : Name(Bureaucrat_cpy.Name)
 {
-	Name = Bureaucrat_cpy.Name;
+	
 	Grade = Bureaucrat_cpy.Grade;
 	std::cout << "Bureaucrat copy constructor has been called" << std::endl;
 	return; 
@@ -40,7 +40,6 @@ Bureaucrat::Bureaucrat(const Bureaucrat &Bureaucrat_cpy)
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &Bureaucrat_aff)
 {
-	Name = Bureaucrat_aff.Name;
 	Grade = Bureaucrat_aff.Grade;
 	std::cout << "Bureaucrat affectation has been called" << std::endl;
 	return *this;

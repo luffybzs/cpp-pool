@@ -15,6 +15,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include <cstddef>
 #include <iostream>
 
 void testDivider(const std::string& title) 
@@ -24,19 +25,19 @@ void testDivider(const std::string& title)
 
 int main() 
 {
-    Intern someRandomIntern;
+    Intern tmp_intern;
 
-    Bureaucrat boss("The Boss", 1);
+    Bureaucrat boss("ayoub", 1);
 
     AForm* form1;
     AForm* form2;
     AForm* form3;
     AForm* unknownForm;
 
-    std::cout << "\n--- Testing Intern's makeForm() method ---\n" << std::endl;
+    std::cout << "\nIntern's makeForm()\n" << std::endl;
 
     try {
-        form1 = someRandomIntern.makeForm("shrubbery creation", "Backyard");
+        form1 = tmp_intern.makeForm("shrubbery creation", "formulaire1");
         std::cout << "\nForm created: " << form1->getName() << std::endl;
         boss.signForm(*form1);
         boss.executeForm(*form1);
@@ -46,7 +47,7 @@ int main()
     }
 
     try {
-        form2 = someRandomIntern.makeForm("robotomy request", "Bender");
+        form2 = tmp_intern.makeForm("robotomy request", "Bender");
         std::cout << "\nForm created: " << form2->getName() << std::endl;
         boss.signForm(*form2);
         boss.executeForm(*form2);
@@ -56,7 +57,7 @@ int main()
     }
 
     try {
-        form3 = someRandomIntern.makeForm("presidential pardon", "Zaphod Beeblebrox");
+        form3 = tmp_intern.makeForm("presidential pardon", "ayarab");
         std::cout << "\nForm created: " << form3->getName() << std::endl;
         boss.signForm(*form3);
         boss.executeForm(*form3);
@@ -66,14 +67,11 @@ int main()
     }
 
     try {
-        unknownForm = someRandomIntern.makeForm("unknown form", "Unknown");
-        if (unknownForm)
+        unknownForm = tmp_intern.makeForm("unknown form", "Unknown");
+        if (unknownForm == NULL)
             delete unknownForm;
     } catch (std::exception &e) {
         std::cerr << "\nError: " << e.what() << std::endl;
     }
-
-    std::cout << "\n--- End of tests ---" << std::endl;
-
     return 0;
 }

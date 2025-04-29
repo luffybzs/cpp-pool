@@ -6,17 +6,18 @@
 class Bureaucrat 
 {
 	private:
-	std::string Name;
-	int Grade;
+		const std::string Name;
+		int Grade;
 	public:
-	Bureaucrat(const std::string _name, int grade);
-	Bureaucrat(const Bureaucrat &Bureaucrat_cpy);
-	Bureaucrat &operator=(const Bureaucrat &Bureaucrat_aff);
-	~Bureaucrat(void);
-	std::string GetName(void) const;
-	int GetGrade(void) const;
-	void incrementGrade();
-	void decrementGrade();
+		Bureaucrat(const std::string _name, int grade);
+		Bureaucrat(const Bureaucrat &Bureaucrat_cpy);
+		Bureaucrat &operator=(const Bureaucrat &Bureaucrat_aff);
+		~Bureaucrat(void);
+		
+		std::string GetName(void) const;
+		int GetGrade(void) const;
+		void incrementGrade();
+		void decrementGrade();
 
 		class GradeTooHighException : public std::exception {
 			public:

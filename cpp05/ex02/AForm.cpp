@@ -50,13 +50,13 @@ AForm::~AForm(void)
 }
 void AForm::beSigned(Bureaucrat &bureaucrat) 
 {
-	if (this->isSigned) 
+	if (bureaucrat.GetGrade() > GradetoSign)
+		throw GradeTooLowException();
+	if (this->isSigned == true) 
 	{
 		std::cout << "AForm " << this->Name << " is already signed." << std::endl;
         return;
     }
-	if (bureaucrat.GetGrade() > GradetoSign)
-		throw GradeTooLowException();
 	isSigned = true;
 }
 

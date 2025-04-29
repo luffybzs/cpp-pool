@@ -18,11 +18,11 @@ Form::Form(const std::string &name, const int gradeToSign,
 	const int gradeToExec) : Name(name), isSigned(false),
 	GradetoSign(gradeToSign), GradetoExecute(gradeToExec)
 {
+	std::cout << "Form personalized constructor has been called" << std::endl;
 	if (gradeToSign < 1 || gradeToExec < 1) 
 		throw GradeTooHighException();
     if (gradeToSign > 150 || gradeToExec > 150) 
 		throw GradeTooLowException();
-	std::cout << "Form personalized constructor has been called" << std::endl;
 	return ;
 }
 
@@ -51,13 +51,13 @@ Form::~Form(void)
 
 void Form::beSigned(Bureaucrat &bureaucrat)
 {
-	if (this->isSigned) 
-	{
-        std::cout << "AForm " << this->Name << " is already signed." << std::endl;
-        return;
-    }
 	if (bureaucrat.GetGrade() > GradetoSign)
 		throw GradeTooLowException();
+	if (this->isSigned == true) 
+	{
+		std::cout << "Form -> " << this->Name << " is already signed." << std::endl;
+        return;
+    }
 	isSigned = true;
 }
 const char *Form::GradeTooHighException::what() const throw()

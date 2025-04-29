@@ -30,17 +30,15 @@ Bureaucrat::~Bureaucrat(void)
 	std::cout << "Bureaucrat destructor has been called" << std::endl;
 	return;
 }
-Bureaucrat::Bureaucrat(const Bureaucrat &Bureaucrat_cpy)
+Bureaucrat::Bureaucrat(const Bureaucrat &Bureaucrat_cpy): Name(Bureaucrat_cpy.Name)
 {
-	Name = Bureaucrat_cpy.Name;
 	Grade = Bureaucrat_cpy.Grade;
 	std::cout << "Bureaucrat copy constructor has been called" << std::endl;
 	return; 
 }
 
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat &Bureaucrat_aff)
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &Bureaucrat_aff) 
 {
-	Name = Bureaucrat_aff.Name;
 	Grade = Bureaucrat_aff.Grade;
 	std::cout << "Bureaucrat affectation has been called" << std::endl;
 	return *this;
@@ -56,31 +54,33 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 	return "Bureaucrat -> The Grade is too low.";
 }
 
-int Bureaucrat::GetGrade(void)
+int Bureaucrat::GetGrade(void) const
 {
 	return Grade;
 }
-std::string Bureaucrat::GetName()
+std::string Bureaucrat::GetName() const
 {
 	return Name;
 }
 
 std::ostream &operator<<(std::ostream &os , const Bureaucrat &bureaucrat_oth) 
 {
-    os << bureaucrat_oth.Name << ", bureaucrat grade " << bureaucrat_oth.Grade;
+    os << bureaucrat_oth.GetName() << ", bureaucrat grade " << bureaucrat_oth.GetGrade();
     return os;
 }
 void Bureaucrat::incrementGrade() 
 {
-    if (Grade - 1 < 1) throw GradeTooHighException();
-    	Grade--;
+    if (Grade - 1 < 1) 
+		throw GradeTooHighException();
+    Grade--;
 	return;
 }
 
 void Bureaucrat::decrementGrade() 
 {
-    if (Grade + 1 > 150) throw GradeTooLowException();
-    	Grade++;
+    if (Grade + 1 > 150) 
+		throw GradeTooLowException();
+    Grade++;
 	return;
 }
 
@@ -89,11 +89,11 @@ void Bureaucrat::signForm(Form& form)
     try 
 	{
         form.beSigned(*this);
-        std::cout <<Name << " signed " << form.getName() << std::endl;
+        std::cout << GetName() << " signed " << form.getName() << std::endl;
     } 
-	catch (const std::exception& e) 
+	catch (const Form::GradeTooLowException &e) 
 	{
-        std::cout <<Name << " couldn't sign " << form.getName() << " because: " << e.what() << std::endl;
+        std::cout << GetName() << " couldn't sign " << form.getName() << " because: " << e.what() << std::endl;
     }
 	return;
 }

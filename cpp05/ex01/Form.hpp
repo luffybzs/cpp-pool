@@ -31,6 +31,7 @@ class Form
 	Form(const Form &Form_cpy);
 	Form &operator=(const Form &Form_aff);
 	~Form();
+	
 	const std::string &getName() const;
 	void beSigned(Bureaucrat &bureaucrat);
 	bool GetIsSigned(void) const;
