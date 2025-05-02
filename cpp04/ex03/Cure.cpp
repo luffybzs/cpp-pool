@@ -6,17 +6,16 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:41:12 by ayarab            #+#    #+#             */
-/*   Updated: 2025/04/19 15:41:13 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/04/20 20:32:54 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "Cure.hpp"
+#include "AMateria.hpp"
 #include <iostream>
 Cure::Cure(void) : AMateria()
 {
-	type = "Cure";
+	type = "cure";
 	std::cout << "Cure default constructor has been called" << std::endl;
 	return;
 }
@@ -40,7 +39,7 @@ Cure::~Cure(void)
 	return;
 }
 
-AMateria *Cure::clone() const
+Cure *Cure::clone() const
 {
 	std::cout << "Cure clone method has been called" << std::endl;
 	return new Cure(*this);
@@ -48,6 +47,6 @@ AMateria *Cure::clone() const
 
 void Cure::use(ICharacter& target) 
 {
-	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+    std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 	return;
 }

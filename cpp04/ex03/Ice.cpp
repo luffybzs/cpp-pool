@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:41:29 by ayarab            #+#    #+#             */
-/*   Updated: 2025/04/19 15:41:30 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/04/20 20:28:32 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Ice::Ice(const Ice &Ice_cpy) : AMateria(Ice_cpy)
 
 Ice &Ice::operator=(const Ice &Ice_aff)
 {
-	std::cout << "Cure Affectation operation has been called" << std::endl;
+	std::cout << "Ice Affectation operation has been called" << std::endl;
 	if (this != &Ice_aff) 
 		this->type  = Ice_aff.type;
 	return *this;
@@ -40,13 +40,13 @@ Ice::~Ice(void)
 	return;
 }
 
-AMateria *Ice::clone() const
+Ice *Ice::clone() const
 {
 	std::cout << "Ice clone method has been called" << std::endl;
 	return new Ice(*this);
 }
 void Ice::use(ICharacter& target) 
 {
-	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+    std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 	return;
 }

@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:41:50 by ayarab            #+#    #+#             */
-/*   Updated: 2025/04/19 20:43:04 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/04/20 21:28:33 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ class Character : public ICharacter
 	Character(const Character &Character_cpy);
 	Character &operator=(const Character &Character_aff);
 	~Character(void);
+	AMateria* getMateria(int idx) const;
 
-	virtual std::string const & getName(void) const;
+	virtual void display_inventory();
+	virtual void empty_inventory();
+	virtual std::string const &getName(void) const;
 	virtual void equip(AMateria* m);
 	virtual void unequip(int idx);
 	virtual void use(int idx, ICharacter& target);

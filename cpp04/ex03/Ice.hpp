@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:41:36 by ayarab            #+#    #+#             */
-/*   Updated: 2025/04/19 15:41:37 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/04/20 20:08:51 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Ice : public AMateria
 	Ice(const Ice &Ice_cpy);
 	~Ice();
 	Ice &operator=(Ice const &Ice_aff);
-	AMateria* clone() const;
+	Ice* clone() const;
 	virtual void use(ICharacter& target);
 
 };

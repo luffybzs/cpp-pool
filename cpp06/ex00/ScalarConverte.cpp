@@ -81,7 +81,32 @@ int ft_is_int(std::string literal)
 
 int ft_is_float(std::string literal)
 {
+	int i = 0; 
+	bool virgule = false;
 	
+	if (literal == NANF_LITERAL || literal == INFF_LITERAL || literal == NINFF_LITERAL)
+        return EXIT_SUCCESS;
+	if (literal.length() < 2 || literal.back() != 'f') 
+		return EXIT_FAILURE;
+	if (literal[0] == '+' || literal[0] == '-')
+        i++;
+	while (i < literal.length() - 1) 
+	{
+		if (literal[i] == '.')
+		{
+			if (virgule == true)
+				return EXIT_FAILURE;
+			virgule = true;
+		}
+		else if (!isdigit(literal[i]))
+		{
+			return EXIT_FAILURE;
+		}
+		i++;
+	}
+	if (virgule)
+		return EXIT_SUCCESS;
+	return EXIT_FAILURE;
 }
 
 
