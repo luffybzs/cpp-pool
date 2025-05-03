@@ -1,5 +1,7 @@
 
 
+#include <climits>
+#include <cmath>
 #include <iostream>
 #include <iomanip>
 #include <cctype> 
@@ -40,17 +42,28 @@ void ft_display_impossible(int type)
 void ft_display_char(char c)
 {
     std::cout << "char: ";
+    if (c < 0 || c > 127)
+    {
+        std::cout << "Impossible" << std::endl;
+        return;
+    }
     if (!std::isprint(c))
     {
-        std::cout << "No displayable" << std::endl;
+        std::cout << "Non displayable" << std::endl;
         return;
     }
     std::cout << "'" << c << "'" << std::endl;
 }
 
-void ft_display_int(int i)
+void ft_display_int(double val)
 {
-    std::cout << "int: " << i << std::endl;
+    std::cout << "int: ";
+    if (std::isnan(val) || std::isinf(val) || val > INT_MAX || val < INT_MIN)
+    {
+        std::cout << "Impossible" << std::endl;
+        return;
+    }
+    std::cout << static_cast<int>(val) << std::endl;
 }
 
 void ft_display_float(float f)
@@ -108,6 +121,33 @@ int ft_is_float(std::string literal)
 		return EXIT_SUCCESS;
 	return EXIT_FAILURE;
 }
+int ft_is_double(std::string literal)
+{
+	int i = 0; 
+	bool virgule = false;
+
+	if (literal == NAN_LITERAL || literal == INF_LITERAL || literal == NINF_LITERAL)
+		return EXIT_SUCCESS;
+	if (literal[0] == '+' || literal[0] == '-')
+		i++;
+	while (i < literal.length()) 
+	{
+		if (literal[i] == '.')
+		{
+			if (virgule)
+				return EXIT_FAILURE;
+			virgule = true;
+		}
+		else if (!isdigit(literal[i]))
+		{
+			return EXIT_FAILURE;
+		}
+		i++;
+	}
+	if (virgule)
+		return EXIT_SUCCESS;
+	return EXIT_FAILURE;
+}
 
 
 void ScalarConverte::convert(std::string literal)
@@ -132,7 +172,33 @@ void ScalarConverte::convert(std::string literal)
 	}
 	else if (ft_is_float(literal) == EXIT_SUCCESS) 
 	{
-		
+		std::string no_f = literal.substr(0, literal.length() - 1);
+		float f = std::stof(no_f);
+		if (std::isnan(f) || std::isinf(f) || f < 0 || f > 127)
+				ft_display_char(-1);
+		else
+				ft_display_char(static_cast<char>(f));
+
+		if (std::isnan(f) || std::isinf(f) || f > INT_MAX || f < INT_MIN)
+				std::cout << "int: Impossible" << std::endl;
+		else
+				ft_display_int(static_cast<int>(f));
+		ft_display_float(f);
+		ft_display_double(static_cast<double>(f));
+	}
+	else if (ft_is_double(literal) == EXIT_SUCCESS)
+	{
+		double d = std::stod(literal);
+		if (std::isnan(d) || std::isinf(d) || d < 0 || d > 127)
+			ft_display_char(-1);
+		else
+			ft_display_char(static_cast<char>(d));
+		if (std::isnan(d) || std::isinf(d) || d > INT_MAX || d < INT_MIN)
+				std::cout << "int: Impossible" << std::endl;
+		else
+				ft_display_int(static_cast<int>(d));
+        ft_display_float(static_cast<float>(d));
+        ft_display_double(d);
 	}
 	
 }
