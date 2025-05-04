@@ -16,11 +16,6 @@
 #include <string>
 class ScalarConverte 
 {
-	private:
-		ScalarConverte(void){};
-		ScalarConverte(const ScalarConverte &ScalarConverte_cpy){};
-		~ScalarConverte(void) {};
-		ScalarConverte &operator=(const ScalarConverte &ScalarConverte_aff){return *this;};
 	public:
 		static void convert(std::string literal);
 };

@@ -1,7 +1,9 @@
 
 
+#include <cfloat>
 #include <climits>
 #include <cmath>
+#include <cstddef>
 #include <iostream>
 #include <iomanip>
 #include <cctype> 
@@ -38,21 +40,22 @@ void ft_display_impossible(int type)
         std::cout << "double: impossible" << std::endl;
 }
 
-
 void ft_display_char(char c)
 {
     std::cout << "char: ";
-    if (c < 0 || c > 127)
-    {
-        std::cout << "Impossible" << std::endl;
-        return;
-    }
-    if (!std::isprint(c))
+	int i = static_cast<unsigned char>(c);
+	if (i > 127)
+	{
+		std::cout << "Impossible" << std::endl;
+		return;
+	}
+
+    if (!std::isprint(static_cast<char>(c)))
     {
         std::cout << "Non displayable" << std::endl;
         return;
     }
-    std::cout << "'" << c << "'" << std::endl;
+    std::cout << "'" << static_cast<char>(c) << "'" << std::endl;
 }
 
 void ft_display_int(double val)
@@ -66,17 +69,49 @@ void ft_display_int(double val)
     std::cout << static_cast<int>(val) << std::endl;
 }
 
-void ft_display_float(float f)
+void ft_display_float(double val)
 {
     std::cout << "float: ";
-    std::cout << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+    if (std::isnan(val))
+    {
+        std::cout << "nanf" << std::endl;
+        return;
+    }
+    if (std::isinf(val))
+    {
+        if (val == INFINITY)
+            std::cout << "+inff" << std::endl;
+        else
+            std::cout << "-inff" << std::endl;
+        return;
+    }
+    if (val > FLT_MAX || val < -FLT_MAX)
+    {
+        std::cout << "Impossible" << std::endl;
+        return;
+    }
+    std::cout << std::fixed << std::setprecision(3) << static_cast<float>(val) << "f" << std::endl;
 }
 
-void ft_display_double(double d)
+void ft_display_double(double val)
 {
     std::cout << "double: ";
-    std::cout << std::fixed << std::setprecision(1) << d << std::endl;
+    if (std::isnan(val))
+    {
+        std::cout << "nan" << std::endl;
+        return;
+    }
+    if (std::isinf(val))
+    {
+        if (val == INFINITY)
+            std::cout << "+inf" << std::endl;
+        else
+            std::cout << "-inf" << std::endl;
+        return;
+    }
+    std::cout << std::fixed << std::setprecision(1) << val << std::endl;
 }
+
 
 int ft_is_int(std::string literal)
 {
@@ -94,12 +129,12 @@ int ft_is_int(std::string literal)
 
 int ft_is_float(std::string literal)
 {
-	int i = 0; 
+	size_t i = 0; 
 	bool virgule = false;
 	
 	if (literal == NANF_LITERAL || literal == INFF_LITERAL || literal == NINFF_LITERAL)
         return EXIT_SUCCESS;
-	if (literal.length() < 2 || literal.back() != 'f') 
+	if (literal.length() < 2 || literal[literal.length() - 1] != 'f')
 		return EXIT_FAILURE;
 	if (literal[0] == '+' || literal[0] == '-')
         i++;
@@ -121,9 +156,10 @@ int ft_is_float(std::string literal)
 		return EXIT_SUCCESS;
 	return EXIT_FAILURE;
 }
+
 int ft_is_double(std::string literal)
 {
-	int i = 0; 
+	size_t i = 0; 
 	bool virgule = false;
 
 	if (literal == NAN_LITERAL || literal == INF_LITERAL || literal == NINF_LITERAL)
@@ -149,56 +185,73 @@ int ft_is_double(std::string literal)
 	return EXIT_FAILURE;
 }
 
+bool safe_stof(const std::string &str, float &result)
+{
+    try {
+        result = static_cast<float>(std::atof(str.c_str()));
+        return true;
+    } catch (...) {
+        return false;
+    }
+}
+
+bool safe_stod(const std::string &str, double &result)
+{
+    try {
+        result = static_cast<double>(std::atof(str.c_str()));
+        return true;
+    } catch (...) {
+        return false;
+    }
+}
+void ft_display_error(std::string msg)
+{
+	std::cout << msg << std::endl;
+	return;
+}
 
 void ScalarConverte::convert(std::string literal)
 {
-	if (ft_is_char(literal) == EXIT_SUCCESS)
-	{
+    if (ft_is_char(literal) == EXIT_SUCCESS)
+    {
 		char c = literal[0];
         ft_display_char(c);
-        ft_display_int(static_cast<int>(c));
-        ft_display_float(static_cast<float>(c));
+        ft_display_int(static_cast<double>(c));
+        ft_display_float(static_cast<double>(c));
         ft_display_double(static_cast<double>(c));
-		return ;
-	}
-	else if (ft_is_int(literal) == EXIT_SUCCESS)
-	{
-		int i = std::atoi(literal.c_str());
+        return;
+    }
+    if (ft_is_int(literal) == EXIT_SUCCESS)
+    {
+        int i = std::atoi(literal.c_str());
         ft_display_char(static_cast<char>(i));
-        ft_display_int(i);
-        ft_display_float(static_cast<float>(i));
+        ft_display_int(static_cast<double>(i));
+        ft_display_float(static_cast<double>(i));
         ft_display_double(static_cast<double>(i));
-		return;
-	}
-	else if (ft_is_float(literal) == EXIT_SUCCESS) 
-	{
-		std::string no_f = literal.substr(0, literal.length() - 1);
-		float f = std::stof(no_f);
-		if (std::isnan(f) || std::isinf(f) || f < 0 || f > 127)
-				ft_display_char(-1);
-		else
-				ft_display_char(static_cast<char>(f));
-
-		if (std::isnan(f) || std::isinf(f) || f > INT_MAX || f < INT_MIN)
-				std::cout << "int: Impossible" << std::endl;
-		else
-				ft_display_int(static_cast<int>(f));
-		ft_display_float(f);
-		ft_display_double(static_cast<double>(f));
-	}
-	else if (ft_is_double(literal) == EXIT_SUCCESS)
-	{
-		double d = std::stod(literal);
-		if (std::isnan(d) || std::isinf(d) || d < 0 || d > 127)
-			ft_display_char(-1);
-		else
-			ft_display_char(static_cast<char>(d));
-		if (std::isnan(d) || std::isinf(d) || d > INT_MAX || d < INT_MIN)
-				std::cout << "int: Impossible" << std::endl;
-		else
-				ft_display_int(static_cast<int>(d));
-        ft_display_float(static_cast<float>(d));
+        return;
+    }
+    if (ft_is_float(literal) == EXIT_SUCCESS)
+    {
+        std::string no_f = literal.substr(0, literal.length() - 1);
+        float f;
+        if (!safe_stof(no_f, f))
+            return ft_display_error("Error Conversion string to float");
+        ft_display_char(static_cast<char>(f));
+        ft_display_int(static_cast<double>(f));
+        ft_display_float(f);
+        ft_display_double(static_cast<double>(f));
+        return;
+    }
+    if (ft_is_double(literal) == EXIT_SUCCESS)
+    {
+        double d;
+        if (!safe_stod(literal, d))
+            return ft_display_error("Error Conversion string to double");  
+        ft_display_char(static_cast<char>(d));
+        ft_display_int(d);
+        ft_display_float(d);
         ft_display_double(d);
-	}
-	
+        return;
+    }
+    ft_display_error("Error Invalid Literal");
 }

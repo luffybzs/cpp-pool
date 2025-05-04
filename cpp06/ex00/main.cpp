@@ -6,11 +6,16 @@
 
 #include <cstdlib>
 #include <iostream>
-int main(int ac, char **av)
-{
-	if (ac > 2 || ac == 1)
-		return (std::cout << "Error too many argument or not enough", EXIT_FAILURE);
-	
+#include "ScalarConverte.hpp"
 
-	return EXIT_FAILURE;
+int main(int argc, char** argv)
+{
+    if (argc != 2)
+    {
+        std::cerr << "Usage: ./convert <literal>" << std::endl;
+        return 1;
+    }
+
+    ScalarConverte::convert(argv[1]);
+    return 0;
 }
