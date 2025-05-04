@@ -1,6 +1,10 @@
 #pragma once
 
-struct data 
-{
-	int info = 10;
+#include <string>
+
+struct Data {
+    int id;
+    std::string name;
+    std::string role;
 };
+

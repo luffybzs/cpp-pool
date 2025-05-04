@@ -2,25 +2,32 @@
 
 #include "Data.hpp"
 #include "Serializer.hpp"
+
 #include <iostream>
 #include <ostream>
-int main() {
-	Data data(42, "Exampleouai", 3.14f);
-    std::cout << "Original Data object:" << std::endl;
-    std::cout << "ID: " << data.id << ", Name: " << data.name << ", Value: " << data.value << std::endl;
+#include <iostream>
+#include "Serializer.hpp"
+#include "Data.hpp"
+
+int main() 
+{
+    Data data;
+    data.id = 42;
+    data.name = "Ayoub";
+    data.role = "Student";
+
+    std::cout << "Address: " << &data << std::endl;
+    std::cout << "ID     : " << data.id << std::endl;
+    std::cout << "Name   : " << data.name << std::endl;
+    std::cout << "Role   : " << data.role << std::endl;
 
     uintptr_t raw = Serializer::serialize(&data);
-    std::cout << "\nSerialized data pointer: " << raw << std::endl;
+    Data* deserialized = Serializer::deserialize(raw);
 
-    Data* deserializedData = Serializer::deserialize(raw);
-    std::cout << "\nDeserialized Data object:" << std::endl;
-    std::cout << "ID: " << deserializedData->id << ", Name: " << deserializedData->name << ", Value: " << deserializedData->value << std::endl;
-
-    if (deserializedData == &data) {
-        std::cout << "\nTest passed: deserialized pointer matches the original pointer." << std::endl;
-    } else {
-        std::cout << "\nTest failed: deserialized pointer does not match the original pointer." << std::endl;
-    }
-
+    std::cout << "apres deserialized" << std::endl;
+    std::cout << "Address: " << deserialized << std::endl;
+    std::cout << "ID     : " << deserialized->id << std::endl;
+    std::cout << "Name   : " << deserialized->name << std::endl;
+    std::cout << "Role   : " << deserialized->role << std::endl;
     return 0;
 }

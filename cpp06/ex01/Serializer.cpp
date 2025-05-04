@@ -1,12 +1,12 @@
 
 #include "Serializer.hpp"
 #include "Data.hpp"
-uintptr_t Serializer::serialize(data* ptr) 
-{
+
+
+uintptr_t Serializer::serialize(Data* ptr) {
 	return reinterpret_cast<uintptr_t>(ptr);
 }
 
-data* Serializer::deserialize(uintptr_t raw) 
-{
-	return reinterpret_cast<data *>(raw);
+Data* Serializer::deserialize(uintptr_t raw) {
+	return reinterpret_cast<Data *>(raw);
 }
