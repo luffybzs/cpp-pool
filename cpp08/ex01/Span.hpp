@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include <limits>
 #include <iterator>
 #include <vector>
 class Span 
