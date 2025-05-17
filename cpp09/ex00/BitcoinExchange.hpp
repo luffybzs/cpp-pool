@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.hpp                                       :+:      :+:    :+:   */
+/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/13 19:48:53 by ayarab            #+#    #+#             */
-/*   Updated: 2025/05/13 20:35:06 by ayarab           ###   ########.fr       */
+/*   Created: 2025/05/17 15:25:32 by ayarab            #+#    #+#             */
+/*   Updated: 2025/05/17 20:54:23 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EASYFIND_HPP
-#define EASYFIND_HPP
+#pragma once
 
-#include <algorithm> 
-#include <stdexcept>
+#include <map>
+#include <string>
 
-
-template<typename T>
-typename T::iterator easyfind(T &container, int value)
+class BitcoinExchange
 {
-	typename T::iterator it;
+  private:
+	std::map<std::string, float> data_btc;
 
-	it = std::find(container.begin(), container.end(), value);
-	if (it == container.end())
-		throw std::runtime_error("ERROR NOT FOUND");
-	return it;
-}
-
-#endif 
+  public:
+	void ft_check_input(const std::string &filename);
+	void ft_check_data_btc(const std::string &filename);
+	BitcoinExchange(void) {};
+	~BitcoinExchange(void) {};
+};

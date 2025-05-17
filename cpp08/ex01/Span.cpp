@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Span.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/13 19:48:35 by ayarab            #+#    #+#             */
+/*   Updated: 2025/05/14 14:42:44 by ayarab           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "Span.hpp"
 #include <algorithm>
 #include <iostream>
@@ -77,6 +90,5 @@ int Span::longestSpan()
         throw std::runtime_error("Error: not enough numbers to compute a span");
     int minVal = *std::min_element(tab.begin(), tab.end());
     int maxVal = *std::max_element(tab.begin(), tab.end());
-
     return maxVal - minVal;
 }

@@ -1,29 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/13 19:48:22 by ayarab            #+#    #+#             */
+/*   Updated: 2025/05/13 19:51:57 by ayarab           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include <iostream>
-#include <cstdlib>      // pour atoi
 #include "Span.hpp"
+#include <cstdlib>     
+#include <ctime>     
 
-int main(int argc, char** argv)
-{
-    if (argc < 3) {
-        std::cerr << "ERROR: ./span num1 num2 num3 ...}" << std::endl;
-        return 1;
-    }
-    try {
-        Span sp(argc - 1);
-        for (int i = 1; i < argc; ++i) {
-            int value = std::atoi(argv[i]);
-            sp.addNumber(value);
-        }
-        std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
-        std::cout << "Longest span: " << sp.longestSpan() << std::endl;
-    } catch (std::exception& e) {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-        return 1;
-    }
-    return 0;
-}
-
-/*
 int main()
 {
     try {
@@ -39,25 +31,19 @@ int main()
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
-
-    std::cout << "\n--- Test avec un gros range ---" << std::endl;
-
+    std::cout << "Test des 10000" << std::endl;
     try {
         Span big(10000);
         std::vector<int> vec;
         for (int i = 0; i < 10000; ++i)
-            vec.push_back(i * 3);
-
+            vec.push_back(i * 2);
         big.addNumber(vec.begin(), vec.end());
-
         std::cout << "Shortest span: " << big.shortestSpan() << std::endl;
         std::cout << "Longest span: " << big.longestSpan() << std::endl;
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
-
-    std::cout << "\n--- Test d'exception (trop d'ajouts) ---" << std::endl;
-
+    std::cout << "Test d'exception" << std::endl;
     try {
         Span s(2);
         s.addNumber(1);
@@ -66,7 +52,5 @@ int main()
     } catch (std::exception& e) {
         std::cerr << "Exception attrapée : " << e.what() << std::endl;
     }
-
     return 0;
 }
-*/
