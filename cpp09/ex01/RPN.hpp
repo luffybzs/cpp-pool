@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 15:25:22 by ayarab            #+#    #+#             */
-/*   Updated: 2025/05/19 15:51:48 by ayarab           ###   ########.fr       */
+/*   Created: 2025/05/20 14:48:06 by ayarab            #+#    #+#             */
+/*   Updated: 2025/05/21 19:08:07 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
-#include <cstdlib>
-#include <iostream>
-#include <istream>
+#ifndef RPN_HPP
+#define RPN_HPP
 
-int main(int ac, char **av)
-{
-    BitcoinExchange exchange;
-    
-    exchange.ft_check_data_btc("data.csv");
-    if (ac != 2)
-    {
-        std::cerr << "Error: could not open file." << std::endl;
-        return EXIT_FAILURE;
-    }
-    exchange.ft_check_input(av[1]);
-    return EXIT_SUCCESS;
-}
+#include <stack>
+#include <string>
+#include <iostream>
+#include <sstream>
+#include <cstring>
+#include <cstdlib>
+
+#define OPERATOR_PLUS '+'
+#define OPERATOR_MOINS '-'
+#define OPERATOR_MULTI '*'
+#define OPERATOR_DIVI '/'
+int	ft_pars_and_exec(const std::string &input, std::stack<int> &pile);
+
+#endif

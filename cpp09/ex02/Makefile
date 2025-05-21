@@ -5,34 +5,28 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/05/17 15:25:29 by ayarab            #+#    #+#              #
-#    Updated: 2025/05/20 14:45:43 by ayarab           ###   ########.fr        #
+#    Created: 2025/05/21 14:45:55 by ayarab            #+#    #+#              #
+#    Updated: 2025/05/21 14:47:47 by ayarab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-NAME = btc
-CXX = c++
-OBJ_FOLDER = obj
+NAME     = PmergeMe
+CXX      = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp BitcoinExchange.cpp
-OBJS = $(SRCS:%.cpp=$(OBJ_FOLDER)/%.o)
-HEADERS = BitcoinExchange.hpp
+SRCS     = main.cpp PmergeMe.cpp
+OBJS     = $(SRCS:.cpp=.o)
 
-all: $(OBJ_FOLDER) $(NAME)
-
-$(OBJ_FOLDER):
-	mkdir -p $(OBJ_FOLDER)
+all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
-$(OBJ_FOLDER)/%.o: %.cpp $(HEADERS)
+%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_FOLDER)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)

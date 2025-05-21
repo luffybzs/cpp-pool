@@ -5,26 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 15:25:22 by ayarab            #+#    #+#             */
-/*   Updated: 2025/05/19 15:51:48 by ayarab           ###   ########.fr       */
+/*   Created: 2025/05/21 14:45:14 by ayarab            #+#    #+#             */
+/*   Updated: 2025/05/21 15:44:24 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#include "PmergeME.hpp"
 #include <cstdlib>
 #include <iostream>
-#include <istream>
-
 int main(int ac, char **av)
 {
-    BitcoinExchange exchange;
-    
-    exchange.ft_check_data_btc("data.csv");
-    if (ac != 2)
+    if (ac < 1)
     {
-        std::cerr << "Error: could not open file." << std::endl;
-        return EXIT_FAILURE;
+        std::cerr << "Error: not enough argument" << std::endl;
+            return EXIT_FAILURE;
     }
-    exchange.ft_check_input(av[1]);
+    PmergeMe test(ac, av);
+    test.sorter();
     return EXIT_SUCCESS;
 }

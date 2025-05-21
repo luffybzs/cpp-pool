@@ -5,38 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/05/17 15:25:29 by ayarab            #+#    #+#              #
-#    Updated: 2025/05/20 14:45:43 by ayarab           ###   ########.fr        #
+#    Created: 2025/05/20 14:46:50 by ayarab            #+#    #+#              #
+#    Updated: 2025/05/21 18:35:04 by ayarab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME     = RPN
+CXX      = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
-NAME = btc
-CXX = c++
-OBJ_FOLDER = obj
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+SRCS     = main.cpp RPN.cpp
+OBJS     = $(SRCS:.cpp=.o)
 
-SRCS = main.cpp BitcoinExchange.cpp
-OBJS = $(SRCS:%.cpp=$(OBJ_FOLDER)/%.o)
-HEADERS = BitcoinExchange.hpp
-
-all: $(OBJ_FOLDER) $(NAME)
-
-$(OBJ_FOLDER):
-	mkdir -p $(OBJ_FOLDER)
+all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
-$(OBJ_FOLDER)/%.o: %.cpp $(HEADERS)
+%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_FOLDER)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean ree
