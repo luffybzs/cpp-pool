@@ -6,11 +6,13 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:48:04 by ayarab            #+#    #+#             */
-/*   Updated: 2025/05/21 19:09:00 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/05/22 14:12:39 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
+
+#include <cstdlib>
 
 int	ft_is_operator(char c)
 {
@@ -20,10 +22,10 @@ int	ft_is_operator(char c)
 	return (0);
 }
 
-int	ft_operation(std::stack<int> &pile, char ope)
+long long	ft_operation(std::stack<int> &pile, char ope)
 {
-	int	b;
-	int	a;
+	long long	b;
+	long long	a;
 
 	if (pile.size() < 2)
 	{
@@ -68,7 +70,12 @@ int	ft_pars_and_exec(const std::string &input, std::stack<int> &pile)
 				std::cerr << "Error: not enough operator !" << std::endl;
 				return (EXIT_FAILURE);
 			}
-			int result = ft_operation(pile, input[i]);
+			long long result = ft_operation(pile, input[i]);
+			if (result > 2147483647 || result < -2147483648)
+				{
+					std::cerr << "Warning this value risk overflow" << std::endl;
+					return (EXIT_FAILURE);
+				}
 			pile.push(result);
 		}
 		else if (input[i] != ' ')

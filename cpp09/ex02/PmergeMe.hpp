@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeME.hpp                                       :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:45:17 by ayarab            #+#    #+#             */
-/*   Updated: 2025/05/21 15:44:13 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/05/22 14:45:04 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <deque>
 #include <string.h>
+#include <string>
 #include <vector>
 
 class PmergeMe
@@ -30,6 +31,8 @@ class PmergeMe
 	~PmergeMe(void);
     std::vector<int> ft_sort_vector(std::vector<int> &vct);
     std::deque<int> ft_sort_deque(std::deque<int> &dq);
-
+    void ft_pars_Input(int ac, char **av);
+    
     void sorter(void);
-};
+  };
+  int ft_is_Valid_Number(const std::string &str);
